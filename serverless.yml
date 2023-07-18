@@ -1,0 +1,29 @@
+service: sample-lambda-serverless
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: java8
+
+package:
+  artifact: target/sample-lambda-serverless-0.0.1-SNAPSHOT.jar
+
+functions:
+  sales-create:
+    handler: com.danech.sale.SaleCreateService
+    events:
+      - httpApi:
+          path: /sale
+          method: post
+  sales-list:
+    handler: com.danech.sale.SaleListService
+    events:
+      - httpApi:
+          path: /sale
+          method: get
+  sales-delete:
+    handler: com.danech.sale.SaleDeleteService
+    events:
+      - httpApi:
+          path: /sale
+          method: delete
